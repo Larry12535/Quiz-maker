@@ -2,6 +2,7 @@
     <section class='signup'>
         <h1 class='createAccount'>Create a New Account</h1>
         <input placeholder='Email'>
+        <input placeholder='Name'>
         <input placeholder='Password'>
         <input placeholder='Re-enter Password'>
         <button class='signupButton'>Signup</button>

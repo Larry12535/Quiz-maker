@@ -1,9 +1,10 @@
 <template>
     <section class="newUser">
-        <div class='buttonWrapper'>
-            <router-link to='/Login' class='login'>Login</router-link>
+        <div class='left'>
+            <router-link to='/' class='home'></router-link>
         </div>
-        <div class='buttonWrapper'>
+        <div class='right'>
+            <router-link to='/Login' class='login'>Login</router-link>
             <router-link to='/Signup' class='signup'>Sign Up</router-link>
         </div>
     </section>
@@ -23,14 +24,35 @@ export default {
         border-bottom:1px solid #A8A8A8;
         background-color:white;
         display:flex;
-        justify-content: center;
     }
 
-    .buttonWrapper {
+    .left {
         flex:1;
         display:flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+    }
+
+    .right {
+        flex:1;
+        display:flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    a {
+        font-size:20px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        margin-left:30px;
+        margin-right:30px;
+    }
+
+    .home {
+        height:50px;
+        width:50px;
+        background-image:url('../../Assets/Images/Q.jpg');
+        background-size:contain;
     }
 
     .signup {
@@ -38,9 +60,6 @@ export default {
         box-sizing:border-box;
         border:2px solid orangered;
         color:orangered;
-        font-size:20px;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: 600;
     }
 
     .signup:hover {
@@ -50,9 +69,6 @@ export default {
 
     .login {
         padding:10px;
-        font-size:20px;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: 600;
     }
 
     .login:hover {

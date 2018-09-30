@@ -1,7 +1,6 @@
 <template>
     <section class="account">
-        <button class='myQuizzes'>My Quizzes</button>
-        <button class='settings'>Settings</button>
+        <button class='me'>Me</button>
     </section>
 </template>
 
@@ -22,7 +21,7 @@ export default {
         justify-content: center;
     }
 
-    .account > button {
+    .me {
         margin-left:50px;
         margin-right:50px;
         font-size:16px;

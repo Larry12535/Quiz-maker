@@ -14,7 +14,7 @@ export default {
     },
     data() {
         return {
-            a:0,
+            a:false,
         }
     }
 }
@@ -23,6 +23,6 @@ export default {
 <style scoped>
     .nav {
         width:100%;
-        height:65px;
+        height:75px;
     }
 </style>
