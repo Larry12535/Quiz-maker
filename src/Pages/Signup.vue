@@ -1,33 +1,25 @@
 <template>
-    <section class='mainPage'>
+    <section class='main'>
         <Navbar/>
         <div class='componentWrapper'>
-            <Login v-if='login'/>
-            <Signup v-else/>
+            <Signup/>
         </div>
     </section>
 </template>
 
 <script>
-import { Navbar } from '../components'
-import { Login, Signup } from '../components'
+import { Navbar, Signup } from '../components'
 
 export default {
     components: {
         Navbar,
-        Login,
         Signup
-    },
-    data() {
-        return {
-            login:true
-        }
     }
 }
 </script>
 
 <style scoped>
-    .mainPage {
+    .main {
         width:100%;
         min-height:100%;
     }
