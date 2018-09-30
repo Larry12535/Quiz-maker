@@ -1,10 +1,10 @@
 <template>
     <section class="newUser">
         <div class='buttonWrapper'>
-            <button class='login'>Login</button>
+            <router-link to='/Login' class='login'>Login</router-link>
         </div>
         <div class='buttonWrapper'>
-            <button class='signup'>Sign Up</button>
+            <router-link to='/Signup' class='signup'>Sign Up</router-link>
         </div>
     </section>
 </template>
@@ -33,20 +33,14 @@ export default {
         align-items: center;
     }
 
-    .buttonWrapper > button {
-        margin-left:20px;
-        margin-right:20px;
-        height:70%;
-        font-size:20px;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: 600;
-    }
-
     .signup {
         padding:10px;
         box-sizing:border-box;
         border:2px solid orangered;
         color:orangered;
+        font-size:20px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 600;
     }
 
     .signup:hover {
@@ -55,7 +49,10 @@ export default {
     }
 
     .login {
-        box-sizing:border-box;
+        padding:10px;
+        font-size:20px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 600;
     }
 
     .login:hover {

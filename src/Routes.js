@@ -2,11 +2,16 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-import { Signup, Login } from '@/Pages'
+import { Home, Signup, Login } from '@/Pages'
 
 export default new VueRouter({
 	mode:'history',
 	routes: [
+		{
+			path:'/',
+			name:'Home',
+			component:Home
+		},
 		{
 			path:'/Signup',
 			name:'Signup',
