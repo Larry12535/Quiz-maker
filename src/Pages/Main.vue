@@ -1,20 +1,27 @@
 <template>
     <section class='mainPage'>
         <Navbar/>
-        <div class='loginWrapper'>
-            <Login/>
+        <div class='componentWrapper'>
+            <Login v-if='login'/>
+            <Signup v-else/>
         </div>
     </section>
 </template>
 
 <script>
 import { Navbar } from '../components'
-import { Login } from '../components'
+import { Login, Signup } from '../components'
 
 export default {
     components: {
         Navbar,
-        Login
+        Login,
+        Signup
+    },
+    data() {
+        return {
+            login:true
+        }
     }
 }
 </script>
@@ -25,7 +32,7 @@ export default {
         min-height:100%;
     }
 
-    .loginWrapper {
+    .componentWrapper {
         width:100%;
         min-height:calc(100vh - 65px);
         display:flex;
