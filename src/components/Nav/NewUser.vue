@@ -20,9 +20,6 @@ export default {
     .newUser {
         width:100%;
         height:100%;
-        box-sizing:border-box;
-        border-bottom:1px solid #A8A8A8;
-        background-color:white;
         display:flex;
     }
 

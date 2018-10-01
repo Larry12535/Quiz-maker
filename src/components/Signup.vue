@@ -1,15 +1,32 @@
 <template>
     <section class='signup'>
         <h1 class='createAccount'>Create a New Account</h1>
-        <input placeholder='Email'>
-        <input placeholder='Name'>
-        <input placeholder='Password'>
-        <input placeholder='Re-enter Password'>
-        <button class='signupButton'>Signup</button>
+        <input placeholder='Email' v-model='registration.email'>
+        <input placeholder='Name' v-model='registration.name'>
+        <input placeholder='Password' type='password' v-model='registration.password'>
+        <input placeholder='Re-enter Password' type='password' v-model='registration.reenterPassword'>
+        <button class='signupButton' v-on:click='Signup'>Signup</button>
     </section>
 </template>
 
 <script>
+    export default {
+        data() {
+            return {
+                registration: {
+                    email:'',
+                    name:'',
+                    password:'',
+                    reenterPassword:''
+                }
+            }
+        },
+        methods: {
+            Signup() {
+                console.log(this.registration.email)
+            }
+        }
+    }
 </script>
 
 <style scoped>
