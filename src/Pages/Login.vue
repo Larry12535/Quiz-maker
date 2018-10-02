@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { Navbar, Login } from '../components'
+import { Navbar, Login } from '@/Components'
 
 export default {
     components: {

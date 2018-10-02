@@ -1,14 +1,50 @@
 <template>
     <section class='login'>
         <h1 class='welcome'>Welcome To Quiz Maker</h1>
-        <input placeholder='Email' name='username'>
-        <input placeholder='Password' name='password' type='password'>
-        <button class='loginButton'>Login</button>
+        <input placeholder='Email' name='username' v-model='email' :maxlength='maxLength'>
+        <input placeholder='Password' name='password' type='password' v-model='password' :maxlength='maxLength'>
+        <button class='loginButton' v-on:click='login'>Login</button>
+        <button class='errorMsg' v-if='error' v-on:click='removeErrorMsg'>{{error}}</button>
         <button class='forgotPass'>Forgot your password?</button>
     </section>
 </template>
 
-<script>
+<script> 
+    import API from '@/Config/API'
+    import constants from '@/Config/Constants'
+
+    export default {
+        data() {
+            return {
+                email:'',
+                password:'',
+                error:'',
+                maxLength: constants.maxLength
+            }
+        },
+        methods: {
+            async login() {
+                const { email, password } = this
+                let rawResponse = await fetch(API.login, {
+                    method:'POST',
+                    headers:{
+                        'Content-Type':'application/json',
+                        'Accept':'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                })
+                let response = await rawResponse.json()
+                if (response.success) {
+                    this.$router.push({ path:'/user/userid/dashboard' })
+                } else {
+                    this.error = response.error
+                }
+            },
+            removeErrorMsg() {
+                this.error = ''
+            }
+        }
+    }
 </script>
 
 <style scoped>
@@ -66,5 +102,11 @@
         font-family: sans-serif;
         font-size:16px;
         font-weight:600;
+    }
+
+    .errorMsg {
+        color:red;
+        font-family: sans-serif;
+        font-size:16px;
     }
 </style>

@@ -12,15 +12,15 @@ export default new VueRouter({
 			component:Home
 		},
 		{
-			path:'/Signup',
+			path:'/signup',
 			component:Signup
 		},
 		{
-			path:'/Login',
+			path:'/login',
 			component:Login
 		},
 		{
-			path:'/User/:id/Dashboard',
+			path:'/user/:id/dashboard',
 			component:Dashboard
 		}
 	]

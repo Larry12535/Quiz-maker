@@ -1,29 +1,68 @@
 <template>
     <section class='signup'>
         <h1 class='createAccount'>Create a New Account</h1>
-        <input placeholder='Email' v-model='registration.email'>
-        <input placeholder='Name' v-model='registration.name'>
-        <input placeholder='Password' type='password' v-model='registration.password'>
-        <input placeholder='Re-enter Password' type='password' v-model='registration.reenterPassword'>
-        <button class='signupButton' v-on:click='Signup'>Signup</button>
+        <input placeholder='Email' v-model='email' :maxlength='maxLength'>
+        <input placeholder='Name' v-model='name' :maxlength='maxLength'>
+        <input placeholder='Password' type='password' v-model='password' :maxlength='maxLength'>
+        <input placeholder='Re-enter Password' type='password' v-model='reenterPassword' :maxlength='maxLength'>
+        <button class='signupButton' v-on:click='signup()'>Signup</button>
+        <button class='passwordsNotMatch' v-if='notMatch' v-on:click='match'>Passwords Do Not Match!</button>
+        <button class='emailTaken' v-if='emailTaken' v-on:click='taken'>Email Is Taken</button>
+        <button class='errorMsg' v-if='error' v-on:click='removeErrorMsg'>{{error}}</button>
     </section>
 </template>
 
 <script>
+    import API from '@/Config/API'
+    import constants from '@/Config/Constants'
+
     export default {
         data() {
             return {
-                registration: {
-                    email:'',
-                    name:'',
-                    password:'',
-                    reenterPassword:''
-                }
+                email:'',
+                name:'',
+                password:'',
+                reenterPassword:'',
+                notMatch:false,
+                emailTaken:false,
+                error:'',
+                maxLength: constants.maxLength
             }
         },
         methods: {
-            Signup() {
-                console.log(this.registration.email)
+            async signup() {
+                const { email, name, password, reenterPassword } = this
+                if (password === reenterPassword) {
+                    let rawResponse = await fetch(API.signup, {
+                        method:'POST',
+                        headers: {
+                            'Content-Type':'application/json',
+                            'Accept':'application/json'
+                        },
+                        body: JSON.stringify({
+                            email,
+                            name,
+                            password
+                        })
+                    })
+                    let response = await rawResponse.json()
+                    if (response.success) {
+                        this.$router.push({ path:'/user/userid/dashboard' })
+                    } else {
+                        this.error = response.error
+                    }
+                } else {
+                    this.notMatch = true
+                }
+            },
+            match() {
+                this.notMatch = false
+            },
+            taken() {
+                this.emailTaken = false
+            },
+            removeErrorMsg() {
+                this.error = ''
             }
         }
     }
@@ -74,5 +113,12 @@
 
     .signupButton:hover {
         background:red;
+    }
+
+    .passwordsNotMatch, .emailTaken, .errorMsg {
+        margin-top:10px;
+        color:red;
+        font-family: sans-serif;
+        font-size:16px;
     }
 </style>

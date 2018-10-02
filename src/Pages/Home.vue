@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { Navbar, Overview } from '../components'
+import { Navbar, Overview } from '@/Components'
 
 export default {
     components: {

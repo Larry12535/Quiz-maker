@@ -4,8 +4,8 @@
             <router-link to='/' class='home'></router-link>
         </div>
         <div class='right'>
-            <router-link to='/Login' class='login'>Login</router-link>
-            <router-link to='/Signup' class='signup'>Sign Up</router-link>
+            <router-link to='/login' class='login'>Login</router-link>
+            <router-link to='/signup' class='signup'>Sign Up</router-link>
         </div>
     </section>
 </template>
