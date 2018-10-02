@@ -1,5 +1,5 @@
 <template>
-    <section class='signup'>
+    <section class='signup' v-on:keydown.13='signup'>
         <h1 class='createAccount'>Create a New Account</h1>
         <input placeholder='Email' v-model='email' :maxlength='maxLength'>
         <input placeholder='Name' v-model='name' :maxlength='maxLength'>

@@ -1,5 +1,5 @@
 <template>
-    <section class='login'>
+    <section class='login' v-on:keydown.13='login'>
         <h1 class='welcome'>Welcome To Quiz Maker</h1>
         <input placeholder='Email' name='username' v-model='email' :maxlength='maxLength'>
         <input placeholder='Password' name='password' type='password' v-model='password' :maxlength='maxLength'>
