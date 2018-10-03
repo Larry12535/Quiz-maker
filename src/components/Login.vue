@@ -1,5 +1,5 @@
 <template>
-    <section class='login' v-on:keydown.13='login'>
+    <section class='login' v-on:keyup.13='login'>
         <h1 class='welcome'>Welcome To Quiz Maker</h1>
         <input placeholder='Email' name='username' v-model='email' :maxlength='maxLength'>
         <input placeholder='Password' name='password' type='password' v-model='password' :maxlength='maxLength'>
@@ -22,6 +22,11 @@
                 maxLength: constants.maxLength
             }
         },
+        computed: {
+            id() {
+                return this.$store.getters.id
+            }
+        },
         methods: {
             async login() {
                 const { email, password } = this
@@ -35,13 +40,17 @@
                 })
                 let response = await rawResponse.json()
                 if (response.success) {
-                    this.$router.push({ path:'/user/userid/dashboard' })
+                    this.setAccount(response.account)
+                    this.$router.push({ path:`/user/${this.id}/dashboard` })
                 } else {
                     this.error = response.error
                 }
             },
             removeErrorMsg() {
                 this.error = ''
+            },
+            setAccount(account) {
+                this.$store.commit('account', account)
             }
         }
     }

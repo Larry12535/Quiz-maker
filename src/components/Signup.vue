@@ -1,7 +1,7 @@
 <template>
-    <section class='signup' v-on:keydown.13='signup'>
+    <section class='signup' v-on:keyup.13='signup'>
         <h1 class='createAccount'>Create a New Account</h1>
-        <input placeholder='Email' v-model='email' :maxlength='maxLength'>
+        <input placeholder='Email' name='username' v-model='email' :maxlength='maxLength'>
         <input placeholder='Name' v-model='name' :maxlength='maxLength'>
         <input placeholder='Password' type='password' v-model='password' :maxlength='maxLength'>
         <input placeholder='Re-enter Password' type='password' v-model='reenterPassword' :maxlength='maxLength'>
@@ -29,6 +29,11 @@
                 maxLength: constants.maxLength
             }
         },
+        computed: {
+            id() {
+                return this.$store.getters.id
+            }
+        },
         methods: {
             async signup() {
                 const { email, name, password, reenterPassword } = this
@@ -47,7 +52,8 @@
                     })
                     let response = await rawResponse.json()
                     if (response.success) {
-                        this.$router.push({ path:'/user/userid/dashboard' })
+                        this.setAccount(response.account)
+                        this.$router.push({ path:`/user/${this.id}/dashboard` })
                     } else {
                         this.error = response.error
                     }
@@ -63,6 +69,9 @@
             },
             removeErrorMsg() {
                 this.error = ''
+            },
+            setAccount(account) {
+                this.$store.commit('account', account)
             }
         }
     }

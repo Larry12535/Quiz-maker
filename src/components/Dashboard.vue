@@ -1,14 +1,28 @@
 <template>
     <section class='panel'>
-        <router-link to='/New' class='new'>New Quiz</router-link>
-        <router-link to='/MyQuizzes' class='myQuizzes'>My Quizzes</router-link>
-        <router-link to='/Settings' class='settings'>Account Settings</router-link>
+        <router-link :to='newQuiz' class='new'>New Quiz</router-link>
+        <router-link :to='myQuizzes' class='myQuizzes'>My Quizzes</router-link>
+        <router-link :to='settings' class='settings'>Account Settings</router-link>
+        <h1>{{id}}</h1>
     </section>
 </template>
 
 <script>
 export default {
-    
+    computed: {
+        id() {
+            return this.$store.getters.id
+        },
+        newQuiz() {
+            return `/user/${this.id}/new`
+        },
+        myQuizzes() {
+            return `/user/${this.id}/myQuizzes`
+        },
+        settings() {
+            return `/user/${this.id}/settings`
+        }
+    }
 }
 </script>
 
