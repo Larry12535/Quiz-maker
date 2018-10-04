@@ -1,7 +1,7 @@
 <template>
     <section class='account'>
         <div class='left'>
-            <router-link to='/User/randomId/Dashboard' class='dashboard'>Dashboard</router-link>
+            <router-link :to='dashboard' class='dashboard'>Dashboard</router-link>
         </div>
         <div class='right'>
             <router-link to='/' class='logout'>Logout</router-link>
@@ -11,7 +11,14 @@
 
 <script>
 export default {
-    
+    computed: {
+        id() {
+            return this.$store.getters.id
+        },
+        dashboard() {
+            return `/user/${this.id}/dashboard`
+        }
+    }
 }
 </script>
 

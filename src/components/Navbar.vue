@@ -1,7 +1,7 @@
 <template>
     <section class="nav">
-        <NewUser v-if='!a'/>
-        <Account v-if='a'/>
+        <NewUser v-if='!id'/>
+        <Account v-if='id'/>
     </section>
 </template>
 
@@ -13,9 +13,9 @@ export default {
         NewUser, 
         Account
     },
-    data() {
-        return {
-            a:false,
+    computed: {
+        id() {
+            return this.$store.getters.id
         }
     }
 }

@@ -1,0 +1,1 @@
+export { default as QuestionMaker } from './QuestionMaker.vue'
