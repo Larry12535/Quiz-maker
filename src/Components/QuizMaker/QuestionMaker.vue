@@ -4,7 +4,7 @@
         <textarea class='description'></textarea>
         <div class='choices'>
             <button v-on:click='addChoice()'>New Choice</button>
-            <input placeholder='Enter Choice' v-for='(choice, index) in newQuiz.questions[currentQuestion].choices' :key='index'>
+            <input placeholder='Enter Choice' v-for='(choice, index) in questions[currentQuestion].choices' :key='index'>
         </div>
     </section>
 </template>
@@ -13,13 +13,13 @@
 export default {
     props:['currentQuestion'],
     computed: {
-        newQuiz() {
-            return this.$store.getters.newQuiz
+        questions() {
+            return this.$store.getters.questions
         }
     },
     methods: {
         addChoice() {
-            this.newQuiz.questions[this.currentQuestion].choices.push('')
+            this.questions[this.currentQuestion].choices.push('')
         }
     }
 }
@@ -66,5 +66,10 @@ export default {
         font-family: sans-serif;
         font-size: 14px;
         width:90%;
+        background:transparent;
+    }
+
+    .choices > input:focus {
+        background:white;
     }
 </style>

@@ -3,7 +3,7 @@
         <QuestionMaker :currentQuestion='currentQuestion'/>
         <div class='divider'></div>
         <div class='questions'>
-            <button v-for='(question, index) in newQuiz.questions' :key='index' class='box' v-on:click='goTo(index)'>
+            <button v-for='(question, index) in questions' :key='index' class='box' v-on:click='goTo(index)'>
                 {{index + 1}}
             </button>
         </div>
@@ -18,8 +18,8 @@ export default {
         QuestionMaker
     },
     computed: {
-        newQuiz() {
-            return this.$store.getters.newQuiz
+        questions() {
+            return this.$store.getters.questions
         }
     },
     data() {
@@ -30,19 +30,6 @@ export default {
     methods: {
         goTo(question) {
             this.currentQuestion = question
-        },
-        next() {
-            if (this.currentQuestion < this.newQuiz.questions.length) {
-                this.currentQuestion++
-            }
-        },
-        previous() {
-            if (this.currentQuestion > 0) {
-                this.currentQuestion--
-            }
-        },
-        addChoice() {
-            this.newQuiz.questions[this.currentQuestion].choices.push('')
         }
     }
 }

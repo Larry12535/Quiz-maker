@@ -6,8 +6,8 @@ const state = {
     },
     newQuiz: {
         questions:[{ choices:[] }, { choices:[] }, { choices:[] }], // {image, description, choices:[], answer}
-        randomChoiceOrder:false,
-        randomQuestionsOrder:false
+        randomizeChoices:false,
+        randomizeQuestions:false
     },
     quizzes: []
 }
